@@ -1,0 +1,10 @@
+"pt-BR":
+  activerecord:
+    views:
+      home: Home
+    attributes:
+      contact:
+        name: "Nome"
+        email: "E-mail"
+        kind: "Tipo de Contato"
+        rmk: "Observações"
