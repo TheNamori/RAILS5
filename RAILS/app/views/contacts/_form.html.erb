@@ -4,16 +4,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
   </head>
-  <body>
-    <div class="container-fluid table-fluid table-dark ">
-      
-      <%= render "/layouts/nav.sidebar" %>
-
+  <body class="container-fluid table-fluid table-dark">
       <div class= "p-3 mb-2 bg-dark border-bottom"> <h1><%= t 'New Contact'%></h1>
         <span>Favor preencher os dados do contato</span>
-
       </div> 
-
 
       <%= form_with model: @contact do |form| %>
         <div class="form-row">
@@ -64,7 +58,7 @@
         <div class="actions">
           <%= form.submit "Enviar", class: "btn btn-light" %>
         </div>
-      <% end %>
+        <% end %>
     </div>
   </body>
 </html>
