@@ -46,6 +46,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    bootstrap-table-rails (1.13.4)
     builder (3.2.4)
     byebug (11.0.1)
     coffee-rails (4.2.2)
@@ -180,6 +181,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap
+  bootstrap-table-rails
   byebug
   coffee-rails (~> 4.2)
   faker

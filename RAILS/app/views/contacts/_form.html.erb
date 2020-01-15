@@ -1,61 +1,70 @@
-<div class="container-fluid table-fluid table-dark ">
-  
-  <%= render "/layouts/nav.sidebar" %>
-
-  <div class= "p-3 mb-2 bg-dark border-bottom"> <h1><%= t 'New Contact'%></h1>
-    <span>Favor preencher os dados do contato</span>
-
-  </div> 
-
-
-  <%= form_with model: @contact do |form| %>
-    <div class="form-row">
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class="container-fluid table-fluid table-dark ">
       
-      <div class="form-group col-md-6">
-        <%= form.label :name %>
-        <%= form.text_field :name, class: "form-control"%>
-      </div>
-      
-      <div class="form-group col-md-6">
-        <%= form.label :email%>
-        <%= form.text_field :email, class: "form-control"%>
-      </div>
+      <%= render "/layouts/nav.sidebar" %>
 
+      <div class= "p-3 mb-2 bg-dark border-bottom"> <h1><%= t 'New Contact'%></h1>
+        <span>Favor preencher os dados do contato</span>
+
+      </div> 
+
+
+      <%= form_with model: @contact do |form| %>
+        <div class="form-row">
+          
+          <div class="form-group col-md-6">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form-control"%>
+          </div>
+          
+          <div class="form-group col-md-6">
+            <%= form.label :email%>
+            <%= form.text_field :email, class: "form-control"%>
+          </div>
+
+        </div>
+
+        <%=form.fields_for :address do |address_fields|%>
+          <div class="form-row">
+            
+            <div class="form-group col-md-6">
+              <%= address_fields.label :street%>
+              <%= address_fields.text_field :street, class: "form-control"%>
+            </div>
+              
+            <div class="form-group col-md-5">
+              <%= address_fields.label :city%>
+              <%= address_fields.text_field :city, class: "form-control"%>
+            </div>
+
+            <div class="form-group col-md-1">
+              <%= address_fields.label :state%>
+              <%= address_fields.select :state, options_for_states(@contact.address.state),{}, {class: "form-control"}%>
+            </div>
+          </div>
+        <%end%>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :kind%>
+            <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control")%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :rmk%>
+          <%= form.text_area :rmk, class: "form-control"%>
+        </div>
+        <div class="actions">
+          <%= form.submit "Enviar", class: "btn btn-light" %>
+        </div>
+      <% end %>
     </div>
-
-  <%=form.fields_for :address do |address_fields|%>
-    <div class="form-row">
-      
-      <div class="form-group col-md-6">
-        <%= address_fields.label :street%>
-        <%= address_fields.text_field :street, class: "form-control"%>
-      </div>
-        
-      <div class="form-group col-md-5">
-        <%= address_fields.label :city%>
-        <%= address_fields.text_field :city, class: "form-control"%>
-      </div>
-
-      <div class="form-group col-md-1">
-        <%= address_fields.label :state%>
-        <%= address_fields.select :state, options_for_states(@contact.address.state),{}, {class: "form-control"}%>
-      </div>
-    </div>
-  <%end%>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <%= form.label :kind%>
-      <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control")%>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :rmk%>
-    <%= form.text_area :rmk, class: "form-control"%>
-  </div>
-  <div class="actions">
-    <%= form.submit "Enviar", class: "btn btn-light" %>
-  </div>
-<% end %>
-</div>
+  </body>
+</html>

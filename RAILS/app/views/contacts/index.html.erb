@@ -1,70 +1,55 @@
-<div class="container-fluid table-fluid table-dark">
-    
-  <%= render "/layouts/nav.sidebar" %>
+<html lang="pt-BR">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <h1 class= "p-3 bg-dark text-light border-bottom"><%=@contacts.model_name.human(count: 2)%></h1> 
 
-<h1 class= "p-3 mb-2 bg-dark border-bottom"><%=@contacts.model_name.human(count: 2)%></h1> 
-
-<div class="row">
-    
+  </head>
+  <body class="container-fluid table-fluid table-dark ">
     <div class="p-3 bg-dark">
       <%= link_to icon('fa text-dark', 'plus','Adicionar', id: 'View'), new_contact_path, class: 'btn btn-light'%>
     </div>
-
-    <div class="bootstrap-table bootstrap4 table-responsive ml-3 mr-3"> 
-      
-      <table class="table table-striped table-bordered table-hover table-dark"
-      data-toggle="table"
-      data-sort-name="name"
-      data-sort-order="desc"
->
-        
-        <thead class='thead-light'>
-          <tr scope="col">
-            <th data-field="name" data-sortable="true" data-toggle="popover" title="Nome"> 
-              <%=@contacts.human_attribute_name("name")%></th>
+        <table class="table table-striped table-bordered table-hover table-dark"
+          data-toggle="table">
             
-            <th data-field="email" data-sortable="true"> 
-              <%=@contacts.human_attribute_name("email")%></th>
-            
-            <th data-field="kind" data-sortable="true"> 
-              <%=@contacts.human_attribute_name("kind")%></th>
+          <thead class='thead-light'>
+            <tr scope="col">
+              <th data-field="name" data-sortable="true" data-toggle="popover" title="Nome"> 
+                <%=@contacts.human_attribute_name("name")%></th>
+              
+              <th data-field="email" data-sortable="true" data-toggle="popover" title="E-mail"> 
+                <%=@contacts.human_attribute_name("email")%></th>
+              
+              <th data-field="kind" data-sortable="true" data-toggle="popover" title="Tipo de Contato"> 
+                <%=@contacts.human_attribute_name("kind")%></th>
 
-            <th data-field="show"> 
-              <%=t 'buttons.show'%></th>
+              <th data-field="show" data-toggle="popover" title="Visualizar"> 
+                <%=t 'buttons.show'%></th>
 
-            <th data-field="edit"> 
-              <%=t 'buttons.edit'%></th>
+              <th data-field="edit" data-toggle="popover" title="Editar"> 
+                <%=t 'buttons.edit'%></th>
 
-            <th data-field="destroy"> 
-              <%=t 'buttons.destroy'%></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @contacts.each do |contact| %>
-            <tr>
-              <td><%= contact.name %></td>
-              <td><%= contact.email %></td>
-              <td><%= contact.kind.description %></td>
-              <td><%= link_to icon('far text-light', 'eye', id: 'View', class: 'btn btn-dark btn-sm'), contact %></td>
-              <td><%= link_to icon('fa text-light', 'pen', id: 'Edit', class: 'btn btn-dark btn-sm'), edit_contact_path(contact) %></td>
-              <td><%= button_to contact, method: :delete, class: 'text-hide' do %>
-                <i class='fas fa-trash-alt btn btn-dark btn-sm'></i>
-                <% end %>
-              </td>
+              <th data-field="destroy" data-toggle="popover" title="Apagar"> 
+                <%=t 'buttons.destroy'%></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-  </div>
-</div>
-</div>
+          </thead>
 
-<script >
-$('[data-toggle="popover"]').popover();
-</script>
-
-
-
-</body>
+          <tbody>
+            <% @contacts.each do |contact| %>
+              <tr scope="row">
+                <td><%= contact.name %></td>
+                <td><%= contact.email %></td>
+                <td><%= contact.kind.description %></td>
+                <td><%= link_to icon('far text-light', 'eye', id: 'View', class: 'btn btn-dark btn-sm'), contact %></td>
+                <td><%= link_to icon('fa text-light', 'pen', id: 'Edit', class: 'btn btn-dark btn-sm'), edit_contact_path(contact) %></td>
+                <td><%= button_to contact, method: :delete, class: 'text-hide' do %>
+                  <i class='fas fa-trash-alt btn btn-dark btn-sm'></i>
+                <% end %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+  </body>
 </html>
