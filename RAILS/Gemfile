@@ -5,7 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+#gem para fazer nestedfields
+gem 'cocoon'
 #tables e tals
 gem "bootstrap-table-rails"
 #Use rails-i18n to translate local date
