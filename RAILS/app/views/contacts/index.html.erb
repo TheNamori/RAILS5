@@ -13,6 +13,7 @@
         <%= link_to icon('fa text-dark', 'plus','Adicionar', id: 'View'), new_contact_path, class: 'btn btn-light'%>
         <a class="buttons-toolbar"></a>
       </div>
+      <div data-turbolinks="false">
       <table class="table table-fluid table-striped table-bordered table-hover table-dark"
           data-toggle="table"
           data-search="true"
@@ -60,6 +61,7 @@
             <% end %>
           </tbody>
         </table>
+      </div>
       </div> 
       <script>
         window.icons = {
