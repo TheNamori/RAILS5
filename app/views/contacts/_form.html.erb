@@ -4,12 +4,23 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
   </head>
+  
   <body class="container-fluid table-fluid table-dark">
       <div class= "p-3 mb-2 bg-dark border-bottom"> <h1><%= t 'New Contact'%></h1>
         <span>Favor preencher os dados do contato</span>
       </div> 
 
-      <%= form_with model: @contact do |form| %>
+      <%= form_with(model: @contact, local: true) do |form| %>
+      
+      <%if @contact.errors.any?%>
+        <%@contact.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger" role="alert">
+          <%=message%>
+        </div>
+        <%end%>
+      <%end%>
+
+
         <div class="form-row">
           
           <div class="form-group col-md-6">
@@ -57,8 +68,6 @@
           <% end %>
           <%= link_to_add_association('Adicionar Telefone', form, :phones, form_name: 'form') %>
        </div>
-
-
         <div class="form-group">
           <%= form.label :rmk%>
           <%= form.text_area :rmk, class: "form-control"%>

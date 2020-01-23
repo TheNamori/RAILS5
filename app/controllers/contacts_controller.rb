@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :kind_selection, only: [:create, :new, :edit, :update, :show]
 
   # GET /contacts
   # GET /contacts.json
@@ -10,22 +11,17 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
-    @kind_selection = Kind.all
-    @contact.build_address
-
   end
 
   # GET /contacts/new
   def new
     @contact = Contact.new
     @contact.build_address
-    @kind_selection = Kind.all
   end
 
   # GET /contacts/1/edit
   def edit
     @contact.build_address
-    @kind_selection = Kind.all
   end
 
   # POST /contacts
@@ -36,10 +32,10 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-        format.json { render :show, usuarios: :created, location: @contact }
+        format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
-        format.json { render json: @contact.errors, usuarios: :unprocessable_entity }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,10 +46,10 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.update(contact_params)
         format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
-        format.json { render :show, usuarios: :ok, location: @contact }
+        format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
-        format.json { render json: @contact.errors, usuarios: :unprocessable_entity }
+        format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +65,12 @@ class ContactsController < ApplicationController
   end
 
   private
+    
+    #Selections in Kind
+    def kind_selection
+      @kind_selection = Kind.all
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
