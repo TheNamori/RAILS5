@@ -12,70 +12,77 @@
 
       <%= form_with(model: @contact, local: true) do |form| %>
       
-      <%if @contact.errors.any?%>
-        <%@contact.errors.full_messages.each do |message| %>
-        <div class="alert alert-danger" role="alert">
-          <%=message%>
-        </div>
+        <%if @contact.errors.any?%>
+          <%@contact.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger" role="alert">
+              <%=message%>
+            </div>
+          <%end%>
         <%end%>
-      <%end%>
 
-
-        <div class="form-row">
+        <div id='contacts' class="form-row m-3 justify-content-md-left">
           
-          <div class="form-group col-md-6">
+          <div id='names' class="form-group col-md-2">
             <%= form.label :name %>
             <%= form.text_field :name, class: "form-control"%>
           </div>
           
-          <div class="form-group col-md-6">
+          <div id='emails' class="form-group col-md-3">
             <%= form.label :email%>
             <%= form.text_field :email, class: "form-control"%>
+          </div>
+
+
+          <div id='kind' class="form-group col-md-1">
+            <%= form.label :kind%>
+            <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control")%>
           </div>
 
         </div>
 
         <%=form.fields_for :address do |address_fields|%>
-          <div class="form-row">
+        <div id='addresses' class="form-row m-3 justify-content-md-left">
             
-            <div class="form-group col-md-6">
+            <div id='streets' class="form-group col-md-3">
               <%= address_fields.label :street%>
               <%= address_fields.text_field :street, class: "form-control"%>
             </div>
               
-            <div class="form-group col-md-5">
+            <div id='citys' class="form-group col-md-2">
               <%= address_fields.label :city%>
               <%= address_fields.text_field :city, class: "form-control"%>
             </div>
 
-            <div class="form-group col-md-1">
+            <div id='states' class="form-group col-md-1">
               <%= address_fields.label :state%>
               <%= address_fields.select :state, options_for_states(@contact.address.state),{}, {class: "form-control"}%>
             </div>
           </div>
         <%end%>
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <%= form.label :kind%>
-            <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control")%>
+        <div id='phones' class="form-row m-3 justify-content-md-left">
+          <%= link_to_add_association('Adicionar Telefone', form, :phones, form_name: 'form', class:'text-light') %>
+
+          <div id='phones'  class="form-group col-md-3">
+            <%= form.fields_for :phones do |phones_fields| %>
+              <%= render partial: "phone_fields", locals: { form: phones_fields } %>
+            <% end %>
           </div>
         </div>
 
-        <div id='phones'>
-          <%= form.fields_for :phones do |phones_fields| %>
-            <%= render partial: "phone_fields", locals: { form: phones_fields } %>
-          <% end %>
-          <%= link_to_add_association('Adicionar Telefone', form, :phones, form_name: 'form') %>
-       </div>
-        <div class="form-group">
-          <%= form.label :rmk%>
-          <%= form.text_area :rmk, class: "form-control"%>
+        <div class="form-row m-3 justify-content-md-left">
+          <div id='observations' class="form-group col-md-6">
+            <%= form.label :rmk%>
+            <%= form.text_area :rmk, class: "form-control", rows: 10%>
+          </div>
         </div>
-        <div class="actions">
-          <%= form.submit "Enviar", class: "btn btn-light" %>
-        </div>
-        <% end %>
+
+        <div class="form-row m-3 justify-content-md-left">
+          <div id='send' class="action">
+            <%= form.submit "Enviar", class: "btn btn-light" %>
+          </div>
+        </div> 
+      <% end %>
     </div>
   </body>
 </html>
