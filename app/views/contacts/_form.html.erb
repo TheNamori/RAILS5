@@ -43,14 +43,14 @@
         <%=form.fields_for :address do |address_fields|%>
         <div id='addresses' class="form-row m-3 justify-content-md-left">
             
-            <div id='streets' class="form-group col-md-3">
-              <%= address_fields.label :street%>
-              <%= address_fields.text_field :street, class: "form-control"%>
-            </div>
-              
             <div id='citys' class="form-group col-md-2">
               <%= address_fields.label :city%>
               <%= address_fields.text_field :city, class: "form-control"%>
+            </div>
+
+            <div id='streets' class="form-group col-md-3">
+              <%= address_fields.label :street%>
+              <%= address_fields.text_field :street, class: "form-control"%>
             </div>
 
             <div id='states' class="form-group col-md-1">
@@ -60,10 +60,11 @@
           </div>
         <%end%>
 
-        <div id='phones' class="form-row m-3 justify-content-md-left">
-          <%= link_to_add_association('Adicionar Telefone', form, :phones, form_name: 'form', class:'text-light') %>
+        <div id='phones' class="form-row justify-content-md-left">
+         
+          <%= link_to_add_association('Adicionar Telefone', form, :phones, form_name: 'form', class:'text-light ml-4') %>
 
-          <div id='phones'  class="form-group col-md-3">
+          <div id='phones'  class="form-group col-md-6">
             <%= form.fields_for :phones do |phones_fields| %>
               <%= render partial: "phone_fields", locals: { form: phones_fields } %>
             <% end %>

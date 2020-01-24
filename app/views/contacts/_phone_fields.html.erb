@@ -1,9 +1,15 @@
 <div class='nested-fields'>
-  <div class='field form_group col-md-14'>
-
-    <%= form.label :phone %>  
-    <%= form.text_field :phone, class: "form-control" %>
-
-    <%= link_to_remove_association('remover',form, class: 'btn btn-dark text-light')%>
+  
+  <div class='field form_groupm ml-2 row'>
+    <div class='field form_group col-md-3'>
+      <%= form.label :phone %>  
+      <%= form.text_field :phone, class: "form-control" %>
+    </div>
+    
+    <div class='field form_group col-md-3'>
+      <%= link_to_remove_association('remover',form, class: 'text-light')%>
+    </div>
   </div>
+  </div>
+
 </div>
