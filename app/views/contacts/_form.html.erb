@@ -5,7 +5,7 @@
     <meta charset="utf-8">
   </head>
   
-  <body class="container-fluid table-fluid table-dark">
+  <body class="container-fluid table-dark">
       <div class= "p-3 mb-2 bg-dark border-bottom"> <h1><%= t 'New Contact'%></h1>
         <span>Favor preencher os dados do contato</span>
       </div> 
@@ -20,9 +20,9 @@
           <%end%>
         <%end%>
 
-        <div id='contacts' class="form-row m-3 justify-content-md-left">
+        <div id='contacts' class="form-row m-3">
           
-          <div id='names' class="form-group col-md-2">
+          <div id='names' class="form-group col-md-3">
             <%= form.label :name %>
             <%= form.text_field :name, class: "form-control"%>
           </div>
@@ -41,9 +41,9 @@
         </div>
 
         <%=form.fields_for :address do |address_fields|%>
-        <div id='addresses' class="form-row m-3 justify-content-md-left">
+        <div id='addresses' class="form-row m-3">
             
-            <div id='citys' class="form-group col-md-2">
+            <div id='citys' class="form-group col-md-3">
               <%= address_fields.label :city%>
               <%= address_fields.text_field :city, class: "form-control"%>
             </div>
@@ -60,29 +60,34 @@
           </div>
         <%end%>
 
-        <div id='phones' class="form-row justify-content-md-left">
-         
-          <%= link_to_add_association('Adicionar Telefone', form, :phones, form_name: 'form', class:'text-light ml-4') %>
-
-          <div id='phones'  class="form-group col-md-6">
-            <%= form.fields_for :phones do |phones_fields| %>
-              <%= render partial: "phone_fields", locals: { form: phones_fields } %>
-            <% end %>
-          </div>
+        <div id='phones'  class="pl-4">
+          <%= form.label :phone %>
         </div>
 
-        <div class="form-row m-3 justify-content-md-left">
-          <div id='observations' class="form-group col-md-6">
+        <div id='phones' class="form-row">
+          <%= link_to_add_association(icon('fa text-white', 'plus','Adicionar', id: 'View'), form, :phones, form_name: 'form', class:'text-light ml-4') %>
+            
+          <%= form.fields_for :phones do |phones_fields| %>
+              <%= render partial: "phone_fields", locals: { form: phones_fields } %>
+            <% end %>
+        </div>
+
+        <div class="form-row m-3">
+          <div id='observations' class="form-group col-md-7">
             <%= form.label :rmk%>
             <%= form.text_area :rmk, class: "form-control", rows: 10%>
           </div>
         </div>
 
-        <div class="form-row m-3 justify-content-md-left">
-          <div id='send' class="action">
+        <div class="form-row m-3">
+          <div id='back' class="action col-md-6">
+            <%= link_to "Back", contacts_path, class: "btn btn-light" %>
+          </div>
+          <div id='send' class="action col-md-5">
             <%= form.submit "Enviar", class: "btn btn-light" %>
           </div>
         </div> 
+
       <% end %>
     </div>
   </body>

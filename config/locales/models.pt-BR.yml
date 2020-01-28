@@ -13,6 +13,7 @@
         email: "E-mail"
         kind: "Tipo de Contato"
         rmk: "Observações"
+        phone: Telefone
       address:
         street: Rua
         city: Cidade
