@@ -34,13 +34,13 @@
               <th scope="col" data-field="kind" data-sortable="true" data-toggle="popover" title="Tipo de Contato" data-width="200" data-width-unit="px"> 
                 <%=@contacts.human_attribute_name("kind")%></th>
 
-              <th scope="col" data-field="show" data-toggle="popover" title="Visualizar" data-width="100" data-width-unit="px"> 
+              <th scope="col" data-field="show" data-toggle="popover" title="Visualizar" data-width="100" data-width-unit="px" class="icon-center"> 
                 <%=t 'buttons.show'%></th>
 
-              <th scope="col" data-field="edit" data-toggle="popover" title="Editar" data-width="100" data-width-unit="px"> 
+              <th scope="col" data-field="edit" data-toggle="popover" title="Editar" data-width="100" data-width-unit="px" class="icon-center"> 
                 <%=t 'buttons.edit'%></th>
 
-              <th scope="col" data-field="destroy" data-toggle="popover" title="Apagar" data-width="100" data-width-unit="px"> 
+              <th scope="col" data-field="destroy" data-toggle="popover" title="Apagar" data-width="100" data-width-unit="px" class="icon-center"> 
                 <%=t 'buttons.destroy'%></th>
             </tr>
           </thead>
@@ -51,11 +51,9 @@
                 <td scope="row"><%= contact.name %></td>
                 <td scope="row"><%= contact.email %></td>
                 <td scope="row"><%= contact.kind.description %></td>
-                <td scope="row"><%= link_to icon('far text-light', 'eye', id: 'View', class: 'btn btn-dark btn-sm'), contact %></td>
-                <td scope="row"><%= link_to icon('fa text-light', 'pen', id: 'Edit', class: 'btn btn-dark btn-sm'), edit_contact_path(contact) %></td>
-                <td scope="row"><%= button_to contact, method: :delete, class: 'text-hide' do %>
-                  <i class='fas fa-trash-alt btn btn-dark btn-sm'></i>
-                <% end %></td>
+                <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'eye', id: 'View', class: 'btn btn-light btn-sm'), contact %></td>
+                <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'pen', id: 'Edit', class: 'btn btn-light btn-sm'), edit_contact_path(contact) %></td>
+                <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'trash', id: 'Edit', class: 'btn btn-light btn-sm'), contact, method: :delete %></td>
               </tr>
             <% end %>
           </tbody>

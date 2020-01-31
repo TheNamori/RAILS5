@@ -6,7 +6,7 @@ namespace :utils do
     10.times do |i|
       Contact.create(
           name: Faker::Name.name, 
-          email: Faker::Internet.email, 
+          email: Faker::Internet.free_email, 
           kind: Kind.all.sample ,
           rmk: LeroleroGenerator.sentence([1,2,3].sample))
     end

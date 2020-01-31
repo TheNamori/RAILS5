@@ -34,10 +34,16 @@
         <div class="form-row m-3 justify-content-md-left">
           <div class="form-group col-md-6">
             <%= form.label :rmk%>
-            <%= form.text_area :rmk, class: "form-control mb-6", disabled: 'true', rows: 10%>
+            <%= form.text_area :rmk, class: "form-control mb-6 size-none", disabled: 'true', rows: 10%>
           </div>
         </div>
         <% end %>
+
+        <div class="form-row m-3">
+          <div id='back' class="action col-6">
+            <%= link_to "Back", contacts_path, class: "btn btn-light" %>
+          </div>
+        </div>
     </div>
   </body>
 </html>

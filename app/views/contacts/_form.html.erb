@@ -22,18 +22,18 @@
 
         <div id='contacts' class="form-row m-3">
           
-          <div id='names' class="form-group col-md-3">
+          <div id='names' class="form-group col-3">
             <%= form.label :name %>
             <%= form.text_field :name, class: "form-control"%>
           </div>
           
-          <div id='emails' class="form-group col-md-3">
+          <div id='emails' class="form-group col-3">
             <%= form.label :email%>
             <%= form.text_field :email, class: "form-control"%>
           </div>
 
 
-          <div id='kind' class="form-group col-md-1">
+          <div id='kind' class="form-group col-1">
             <%= form.label :kind%>
             <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control")%>
           </div>
@@ -43,17 +43,17 @@
         <%=form.fields_for :address do |address_fields|%>
         <div id='addresses' class="form-row m-3">
             
-            <div id='citys' class="form-group col-md-3">
+            <div id='citys' class="form-group col-3">
               <%= address_fields.label :city%>
               <%= address_fields.text_field :city, class: "form-control"%>
             </div>
 
-            <div id='streets' class="form-group col-md-3">
+            <div id='streets' class="form-group col-3">
               <%= address_fields.label :street%>
               <%= address_fields.text_field :street, class: "form-control"%>
             </div>
 
-            <div id='states' class="form-group col-md-1">
+            <div id='states' class="form-group col-1">
               <%= address_fields.label :state%>
               <%= address_fields.select :state, options_for_states(@contact.address.state),{}, {class: "form-control"}%>
             </div>
@@ -64,27 +64,29 @@
           <%= form.label :phone %>
         </div>
 
-        <div id='phones' class="form-row">
+        <div>
           <%= link_to_add_association(icon('fa text-white', 'plus','Adicionar', id: 'View'), form, :phones, form_name: 'form', class:'text-light ml-4') %>
-            
+          </div>
+
+        <div id='phones'>
           <%= form.fields_for :phones do |phones_fields| %>
               <%= render partial: "phone_fields", locals: { form: phones_fields } %>
             <% end %>
         </div>
 
         <div class="form-row m-3">
-          <div id='observations' class="form-group col-md-7">
+          <div id='observations' class="form-group col-7">
             <%= form.label :rmk%>
-            <%= form.text_area :rmk, class: "form-control", rows: 10%>
+            <%= form.text_area :rmk, class: "form-control size-none", rows: 10%>
           </div>
         </div>
 
         <div class="form-row m-3">
-          <div id='back' class="action col-md-6">
+          <div id='back' class="action col-6">
             <%= link_to "Back", contacts_path, class: "btn btn-light" %>
           </div>
-          <div id='send' class="action col-md-5">
-            <%= form.submit "Enviar", class: "btn btn-light" %>
+          <div id='send' class="action col-1">
+            <%= form.submit "Enviar", class: "btn btn-light float-right" %>
           </div>
         </div> 
 

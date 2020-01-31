@@ -21,7 +21,6 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
-    @contact.build_address
   end
 
   # POST /contacts

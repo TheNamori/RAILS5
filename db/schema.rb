@@ -13,34 +13,34 @@
 ActiveRecord::Schema.define(version: 20200114191948) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "contact_id", null: false
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_addresses_on_contact_id"
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.integer  "kind_id",    null: false
-    t.text     "rmk"
+    t.string "name"
+    t.string "email"
+    t.integer "kind_id", null: false
+    t.text "rmk"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["kind_id"], name: "index_contacts_on_kind_id"
   end
 
   create_table "kinds", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "phones", force: :cascade do |t|
-    t.string   "phone"
-    t.integer  "contact_id", null: false
+    t.string "phone"
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_phones_on_contact_id"
