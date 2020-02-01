@@ -53,7 +53,8 @@
                 <td scope="row"><%= contact.kind.description %></td>
                 <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'eye', id: 'View', class: 'btn btn-light btn-sm'), contact %></td>
                 <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'pen', id: 'Edit', class: 'btn btn-light btn-sm'), edit_contact_path(contact) %></td>
-                <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'trash', id: 'Edit', class: 'btn btn-light btn-sm'), contact, method: :delete %></td>
+                <td scope="row" class="icon-center"><%= link_to icon('fa text-dark', 'trash', id: 'Edit', class: 'btn btn-light btn-sm'), contact, method: :delete, 
+                  data: {confirm: "Deseja apagar este contato?", title: "Sure? "} %></td>
               </tr>
             <% end %>
           </tbody>

@@ -4,46 +4,77 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
   </head>
-  <body class="container-fluid table-fluid table-dark">
+  
+  <body class="container-fluid table-dark">
       <div class= "p-3 mb-2 bg-dark border-bottom"> <h1><%= t 'New Contact'%></h1>
         <span>Favor preencher os dados do contato</span>
       </div> 
 
-      <%= form_with model: @contact do |form| %>
-        <div class="form-row m-3 justify-content-md-left">
+      <%= form_with(model: @contact, local: true) do |form| %>
+      
+        <div id='contacts' class="form-row m-3">
           
-          <div class="form-group col-md-3">
+          <div id='names' class="form-group col-3">
             <%= form.label :name %>
-            <%= form.text_field :name, class: "form-control", disabled: 'true'%>
+            <%= form.text_field :name, class: "form-control", disabled: true %>
           </div>
           
-          <div class="form-group col-md-3">
+          <div id='emails' class="form-group col-3">
             <%= form.label :email%>
-            <%= form.text_field :email, class: "form-control", disabled: 'true'%>
+            <%= form.text_field :email, class: "form-control", disabled: true %>
           </div>
 
-        </div>
 
-        <div class="form-row m-3 justify-content-md-left">
-          <div class="form-group col-md-3">
+          <div id='kind' class="form-group col-1">
             <%= form.label :kind%>
-            <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control", disabled: 'true')%>
+            <%= form.collection_select(:kind_id, @kind_selection, :id, :description, {}, class: "form-control", disabled: true) %>
           </div>
+
         </div>
 
-        <div class="form-row m-3 justify-content-md-left">
-          <div class="form-group col-md-6">
+        <%=form.fields_for :address do |address_fields|%>
+        <div id='addresses' class="form-row m-3">
+            
+            <div id='citys' class="form-group col-3">
+              <%= address_fields.label :city%>
+              <%= address_fields.text_field :city, class: "form-control", disabled: true %>
+            </div>
+
+            <div id='streets' class="form-group col-3">
+              <%= address_fields.label :street%>
+              <%= address_fields.text_field :street, class: "form-control", disabled: true %>
+            </div>
+
+            <div id='states' class="form-group col-1">
+              <%= address_fields.label :state%>
+              <%= address_fields.select :state, options_for_states(@contact.address.state),{}, {class: "form-control", disabled: true}%>
+            </div>
+          </div>
+        <%end%>
+
+        <div id='phones'  class="pl-4">
+          <%= form.label :phone %>
+        </div>
+
+        <div id='phones'>
+          <%= form.fields_for :phones do |phones_fields| %>
+              <%= render partial: "phone_show", locals: { form: phones_fields } %>
+            <% end %>
+        </div>
+
+        <div class="form-row m-3">
+          <div id='observations' class="form-group col-7">
             <%= form.label :rmk%>
-            <%= form.text_area :rmk, class: "form-control mb-6 size-none", disabled: 'true', rows: 10%>
+            <%= form.text_area :rmk, class: "form-control size-none",disabled: true, rows: 6%>
           </div>
         </div>
-        <% end %>
 
         <div class="form-row m-3">
           <div id='back' class="action col-6">
             <%= link_to "Back", contacts_path, class: "btn btn-light" %>
           </div>
-        </div>
+
+      <% end %>
     </div>
   </body>
 </html>
