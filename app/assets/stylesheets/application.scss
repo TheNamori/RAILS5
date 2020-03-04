@@ -67,9 +67,17 @@
 }
 
 .dropdown-menu input[type="checkbox"] {
-  display: none;
+  background-color: #454d55;
 }
 
 .dropdown-item{
   color: white;
+}
+
+.dropdown-item:active{
+  background-color: white;
+}
+
+.dropdown-item:checked {
+  background: #dddddd;
 }
